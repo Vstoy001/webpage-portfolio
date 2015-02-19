@@ -11,27 +11,27 @@ body {
 p {
     font-size: 1.125em;
     line-height: 2em;
-    max-width:530px;
+    max-width: 530px;
     padding-bottom: 10px;
 }
 
 img {
-    border:0;
+    border: 0;
     padding-bottom: 30px;
 }
 
 h1 {
     font-size: 36pt;
-    text-align:center;
+    text-align: center;
     padding-bottom: 20px;
 }
 
 h2 {
     font-size: 1.7em;
     margin-top: 0;
-    padding-bottom:20px;
+    padding-bottom: 20px;
     font-weight: bold;
-    color: #F07C17;
+    color: #f07c17;
 }
 
 li {
@@ -41,7 +41,7 @@ li {
 
 .outline {
     border: 1px solid #ccc;
-    padding:30px;
+    padding: 30px;
     max-width: 375px;
 }
 
