@@ -1,6 +1,6 @@
 * {
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -15,7 +15,7 @@
 
 h1 {
   font-size: 40px;
-  color: #F5A623;
+  color: #f5a623;
   line-height: 48px;
   display: inline;
 }
@@ -38,12 +38,12 @@ h3 {
 h4 {
   font-weight: bold;
   font-size: 14px;
-  color: #4A4A4A;
+  color: #4a4a4a;
   line-height: 17px;
 }
 
 h2, h3, h4, h5 {
-  padding:10px;
+  padding: 10px;
   padding-left: 5%;
   padding-right: 5%;
 }
@@ -73,7 +73,7 @@ p {
 }
 
 a {
-  color: #1199C3;
+  color: #1199c3;
   text-decoration: none;
   margin-top: 10px;
   display: block;
@@ -82,7 +82,7 @@ a {
 .welcome-message {
   font-style: italic;
   font-size: 18px;
-  color: #F3F3F3;
+  color: #f3f3f3;
   line-height: 28px;
 }
 
