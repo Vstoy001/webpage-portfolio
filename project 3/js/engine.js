@@ -17,7 +17,7 @@
 //constants for dimensions of a tile
 var BLOCK_WIDTH = 83;
 var BLOCK_HEIGHT = 101;
-
+//constants for world size
 var CANVAS_WIDTH = 1024;
 var CANVAS_HEIGHT = 960;
 
