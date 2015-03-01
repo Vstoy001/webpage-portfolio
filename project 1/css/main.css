@@ -1,8 +1,6 @@
-
 body {
     color: #666666;
     font-family: 'Verdana', sans-serif;
-
     margin: 20px;
     margin-top: 25px;
     max-width: 1024px;
@@ -51,4 +49,3 @@ li {
     z-index: -1;
     opacity: 0.4;
 }
-
