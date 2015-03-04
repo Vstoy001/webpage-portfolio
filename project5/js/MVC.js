@@ -18,8 +18,13 @@ var model = {
         //return the map to be used as a global var
         return map;
     },
-    
-    addMarker
+    /*    
+        map = model.initMap(),
+        
+        addMarker: function (marker) {
+            interestMarkers.push(marker);
+        }
+    */
 
 };
 
@@ -43,8 +48,8 @@ var controller = {
         console.log("interests of: " + interestArray);
         return interestArray;
     },
-    
-    
+
+
     setNeighborhood: function () {
         //get data from the query box
         var city = $('#city').val();
@@ -96,8 +101,7 @@ var controller = {
         };
         //make a new search
         var search = new google.maps.places.PlacesService(map);
-        console.log(request.types);
-
+        //search for places of interest
         search.nearbySearch(request, function (results, status) {
             if (status != google.maps.places.PlacesServiceStatus.OK) {
                 alert("There was a problem looking for anything of interest" + status);
@@ -118,27 +122,19 @@ var controller = {
                     });
 
                     interestMarkers.push(marker);
-
+                    //console.log(marker);
+                    
                     var id = {
-                        placeId: interestMarkers[interestMarkers.length - 1].placeId
+                        placeId: marker.placeId
                     }
-                    search.getDetails(id, function (results, status) {
-                        if (status != google.maps.places.PlacesServiceStatus.OK) {
-                            alert("There was a problem looking for anything of interest" + status);
-                            return;
-                        } else {
-                            //handle undefined destination
-                            if (destination.property !== undefined) {
-                                alert("please enter a location to seaarch near first");
-                                return;
-                            }
+                    
+                    controller.findDetails(id, i);
 
-                            model.attachInfo(results[i], i);
-                        }
-                    });
                 }
             }
         });
+
+
     },
 
     /*
@@ -149,13 +145,31 @@ var controller = {
                         }
     */
 
+    findDetails: function (id, i) {
+        var search = new google.maps.places.PlacesService(map);
+        //get details about places of interest
+        search.getDetails(id, function (results, status) {
+            if (status != google.maps.places.PlacesServiceStatus.OK) {
+                alert("There was a problem looking for anything of interest" + status);
+                return;
+            } else {
+                //handle undefined destination
+                if (destination.property !== undefined) {
+                    alert("please enter a location to seaarch near first");
+                    return;
+                }
+
+                model.attachInfo(results[i], i);
+            }
+        });
+    },
+
     attachInfo: function (result, i) {
         //set current marker to give info on
-        
+
         console.log(interestMarkers[i]);
         var currMarker = interestMarkers[i];
-        console.log(currMarker);
-        
+
         $("#interest-list").append('<li class="interest-list-item">' + result.place_id + '</li>');
 
         var info = new google.maps.InfoWindow({
