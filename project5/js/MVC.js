@@ -118,23 +118,16 @@ var controller = {
                     var marker = new google.maps.Marker({
                         map: map,
                         position: place.geometry.location,
-                        placeId: results[0].place_id
+                        placeId: results[i].place_id
                     });
 
                     interestMarkers.push(marker);
-                    //console.log(marker);
-                    
-                    var id = {
+                    controller.findDetails({
                         placeId: marker.placeId
-                    }
-                    
-                    controller.findDetails(id, i);
-
+                    }, marker);
                 }
             }
         });
-
-
     },
 
     /*
@@ -145,10 +138,10 @@ var controller = {
                         }
     */
 
-    findDetails: function (id, i) {
+    findDetails: function (id, marker) {
         var search = new google.maps.places.PlacesService(map);
         //get details about places of interest
-        search.getDetails(id, function (results, status) {
+        search.getDetails(id, function (result, status) {
             if (status != google.maps.places.PlacesServiceStatus.OK) {
                 alert("There was a problem looking for anything of interest" + status);
                 return;
@@ -159,27 +152,31 @@ var controller = {
                     return;
                 }
 
-                model.attachInfo(results[i], i);
+                controller.attachInfo(result, marker);
             }
         });
     },
 
-    attachInfo: function (result, i) {
+    attachInfo: function (result, marker) {
         //set current marker to give info on
 
-        console.log(interestMarkers[i]);
-        var currMarker = interestMarkers[i];
+        //console.log(result);
 
-        $("#interest-list").append('<li class="interest-list-item">' + result.place_id + '</li>');
-
+        $("#interest-list").append('<li class="interest-list-item">' + result.name + '</li>');
+        
         var info = new google.maps.InfoWindow({
-            content: "<p>" + currMarker.getPosition() + "</p>"
+            content: "<p>" + result.name + "</p>"
         });
 
-        google.maps.event.addDomListener(currMarker, 'click', function () {
-            info.open(map, currMarker);
+        google.maps.event.addDomListener(marker, 'click', function () {
+            info.open(map, marker);
         });
+        $(".interest-list-item").on('click', controller.displayInfo);
 
+    },
+    
+    displayInfo: function () {
+        alert("hi");
     }
 };
 
